@@ -1,4 +1,4 @@
-<html ng-app>
+<html ng-app="simpleApp">
 <head>
 	<title>maipatana</title>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
@@ -43,7 +43,7 @@
 }
 </style>
 <script>
-	angular.module('Ctrl', []).controller('simpleCtrl', function($scope){
+	angular.module('simpleApp', []).controller('simpleCtrl', function($scope){
 		$scope.reveal = "";
 		if ($scope.name.toLowerCase() == "cat")
 		{
