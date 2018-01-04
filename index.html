@@ -9,7 +9,7 @@
 <body>
 	<div class="container" ng-controller="simpleCtrl">
 		<input type="text" class="form-control abovecentered" style="width: 320px" ng-model="name" placeholder="Your Name" size="14" />
-		<div ng-hide="!name && !reveal" class="centered">
+		<div ng-hide="!name == !reveal" class="centered">
 			<h1>
 				<center>
 					Hello {{name}}.
