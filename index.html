@@ -1,28 +1,25 @@
-<html ng-app="simpleApp">
+<html>
 <head>
 	<title>maipatana</title>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<body>
-	<div class="container" ng-controller="simpleCtrl">
-		<input type="text" class="form-control abovecentered" style="width: 320px" ng-model="name" placeholder="Your Name" size="14" />
-		<div ng-hide="!name == !reveal" class="centered">
+<body ng-app="myApp" ng-controller="simpleCtrl">
+	<div class="container">
+		<input type="text" class="form-control abovecentered" style="width: 320px" 
+		ng-model="name" placeholder="Your Name" size="14" / ng-change="check()">
+		<div ng-hide="!name || name == password" class="centered">
 			<h1>
 				<center>
 					Hello {{name}}.
 				</center>
 			</h1>
 		</div>
-		<div ng-hide="!reveal" class="centered">
-				<center>
-					Hello Freind.
-				</center>
-			<center>
-				<div ng-bind-html="reveal"></div>
-			</center>
+		<div ng-hide="name != password" class="centered" id="catcontainer">
+
 		</div>
 	</div>
 </body>
@@ -43,12 +40,19 @@
 }
 </style>
 <script>
-	angular.module('simpleApp', []).controller('simpleCtrl', function($scope){
-		$scope.reveal = "";
-		if ($scope.name.toLowerCase() == "cat")
-		{
-			$scope.reveal = "<img src=http://thecatapi.com/api/images/get?format=src&type=gif&timestamp="+ new Date().getTime()+"/>";
-		}
+var app = angular.module('myApp', []);
+app.controller('simpleCtrl', function($scope){
+		$scope.password = "cat";
+		
+		$scope.check = function check(){
+			if ($scope.name == $scope.password){
+				var catphoto = "http://thecatapi.com/api/images/get?format=src&type=gif&timestamp="+ new Date().getTime();
+				catcontainer.innerHTML = "<img src="+catphoto+"/>";
+			}
+		};
 	});
+	
+	
+	
 </script>
 </html>
